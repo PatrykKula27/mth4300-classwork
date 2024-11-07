@@ -155,7 +155,14 @@ void LinkedList::deleteNodeAtPosition(int position)
 
 LinkedList LinkedList::reverseOrder(LinkedList& regList)
 {
-    Node* current = head;
     Node* previous = nullptr;
-    return newList;
+    Node* current = head;
+    while(current != nullptr)
+    {
+        Node* temp = current->next;
+        current->next = previous;
+        previous = current;
+        current = temp;
+    }
+    head = previous;
 }
