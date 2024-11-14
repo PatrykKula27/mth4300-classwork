@@ -44,6 +44,14 @@ Short Answers:
 10. A selection sort algorithm determinues which elements to swap at each step by finding either the maximum or the minimum.
 
 Coding:
+1. Functions to study for coding questions:
+- Linked List
+   - Push Back
+   - Push Front
+- Vector
+- Selection Sort
+   - Max/Min
+
 2. Find the 5 errors.
 
 Error #1: In rectangle.h - 
