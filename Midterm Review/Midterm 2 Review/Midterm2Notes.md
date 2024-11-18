@@ -6,11 +6,10 @@
 3. Destructors
 4. Arrow Operators
 5. Linked List
-6. STL List
-7. Iterators
-8. Selection Sort 
-9. Big O
-10. File Streams
+6. STL List + Iterators
+7. Selection Sort 
+8. Big O
+9. File Streams
 
 ## 1. Operator Overload
 Operator Overloading allows you to redefine how operators work with user-defined data types. It allows the user to create specific scenarios for each operator in a class. Operators such as ```+```, ```-```, ```==```, ```<<```, ```>>```, ```*```, and ```/``` can be overloaded.
@@ -555,7 +554,7 @@ STL list allows fast insertion and deletion at any position (constant time for t
 * Traversal both forwards and backwards via iterators.
 * Efficient insertion/deletion from both ends and at the center (in comparison to vectors).
 
-## 7. Iterators
+### Iterators
 In STL List, doubly linked lists allow for bi-directional traversal, which occur via the usage of iterators. Iterators are similar to pointers, and in addition to the aforementioned traversal, iterators can also be used to insert or delete elements in a doubly linked list.
 
 ### STL List + Iterator Example:
@@ -570,7 +569,7 @@ newList.insert(it, 10); // Inserts the value 10 before the iterator's current po
 Iterators become invalid after modifying the list struture at their position.
 
 
-## 8. Selection Sort
+## 7. Selection Sort
 In C++, Selection Sort is a simple comparison-based sorting algorithm. It works by repeatedly finding the minimum or maximum element from the unsorted part of the list and swapping it with the first unsorted element. This process is repeated for the remaining unsorted portion of the list, gradually sorting the entire list. Despite it's simplicity, it has an $O(n^2)$ time complexity, making it inefficient for large datasets.
 
 ### Steps for Selection Sort:
@@ -653,7 +652,7 @@ Sorted array: 11 12 22 25 64
 * Space Complexity: O(1), as no extra memory is used except for temporary variables.
 
 
-## 9. Big O
+## 8. Big O
 Big O Notation is a mathematical notation used in computer science to describe the ```Time Complexity (how fast/the number of steps the algorithm takes to complete it's function)``` and/or ```Space Complexity (how much memory/the number of additional memory calls the algorithm needs to complete)``` an algorithm uses as the input size grows.
 
 The Big O Notation mainly focusses on the worst-case scenario of an algorithm, helping to estimate how the performance of it scales with larger inputs.
@@ -696,7 +695,7 @@ Big O notation abstracts away constants and lower-order terms to focus on growth
 It helps compare algorithms and predict how they will scale as inputs increase.
 
 
-## 10. File Streams
+## 9. File Streams
 In C++, inputting and outputting files is handled using file streams from the ```<fstream>``` library. This library provides three key classes for file operations:
 
 * ifstream: For reading from files (input file stream).
