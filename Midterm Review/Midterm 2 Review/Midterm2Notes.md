@@ -736,7 +736,7 @@ int main()
 ```
 
 ##### Explanation:
-* std::fstream file("data.txt", std::ios::in | std::ios::out);: Opens data.txt for both reading and writing.
+* ```std::fstream file("data.txt", std::ios::in | std::ios::out);```: Opens data.txt for both reading and writing.
 * file << "text";: Writes to the file.
 * file.seekg(0, std::ios::beg);: Moves the file pointer back to the start to read from the file.
 * std::getline(file, line);: Reads lines from the file.
