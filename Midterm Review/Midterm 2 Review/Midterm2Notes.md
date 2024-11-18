@@ -29,7 +29,7 @@ In order to overload an operator, a function must first state the class, then fo
 This case is different when it comes to overloading output and input operators. The syntax goes as follows:
 
 ```cpp
-friend std::ostream& operator<<(std::ostream* newOutput, ClassName& classOutput)
+friend std::ostream& operator<<(std::ostream& newOutput, ClassName& classOutput)
 {
     newOutput<<"("<<classOutput.val<<", "classOutput.value<<")"<<std::endl;
     return newOutput;
