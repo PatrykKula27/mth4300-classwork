@@ -434,17 +434,18 @@ public:
     void insert(int value) {
         Node* newNode = new Node();  // Create a new node
         newNode->data = value;
-        newNode->next = nullptr;
+        newNode->next = nullptr; // The next pointer is initialized to nullptr, indicating that this node does not point to another node yet.
 
         if (head == nullptr) {
             // If list is empty, new node becomes the head
             head = newNode;
-        } else {
+        } else { // Starting from head, it moves from node to node using the next pointer until it reaches the last node (where temp->next == nullptr).
             Node* temp = head;
             while (temp->next != nullptr) {
-                temp = temp->next;  // Traverse to the last node
+                temp = temp->next;  // Traverse to the last node. Move temp to the next node
             }
             temp->next = newNode;  // Insert at the end
+            // Once the last node is found (temp is pointing to it), its next pointer is updated to point to the new node. This effectively appends the new node to the end of the list.
         }
     }
 
