@@ -130,7 +130,8 @@ Here's a simplified example of a template class for a ```vector```:
 #include <iostream>
 
 template <typename T>
-class MyVector {
+class MyVector 
+{
 private:
     T* data;          // Pointer to dynamically allocated array
     size_t size;      // Number of elements currently in the vector
@@ -138,18 +139,21 @@ private:
 
 public:
     // Constructor
-    MyVector() : size(0), capacity(1) {
+    MyVector() : size(0), capacity(1) 
+    {
         data = new T[capacity];  // Allocate memory for 1 element
     }
 
     // Destructor
-    ~MyVector() {
+    ~MyVector() 
+    {
         delete[] data;  // Free dynamically allocated memory
     }
 
     // Method to add an element
     void push_back(const T& value) {
-        if (size == capacity) {
+        if (size == capacity) 
+        {
             resize();  // Resize if capacity is reached
         }
         data[size] = value;
@@ -157,22 +161,31 @@ public:
     }
 
     // Method to access elements
-    T& operator[](size_t index) {
-        if (index >= size) throw std::out_of_range("Index out of range");
+    T& operator[](size_t index) 
+    {
+        if (index >= size) 
+        {
+            throw std::out_of_range("Index out of range");
+        }
         return data[index];
     }
 
     // Method to get the size of the vector
-    size_t getSize() const { return size; }
+    size_t getSize() const 
+    { 
+        return size; 
+    }
 
 private:
     // Helper method to resize the vector when capacity is reached
-    void resize() {
+    void resize() 
+    {
         capacity *= 2;  // Double the capacity
         T* newData = new T[capacity];  // Allocate larger array
 
         // Copy old data to new array
-        for (size_t i = 0; i < size; i++) {
+        for (size_t i = 0; i < size; i++) 
+        {
             newData[i] = data[i];
         }
 
@@ -208,7 +221,8 @@ The ```std::vector``` class in the STL works similarly, but with many more featu
 #include <iostream>
 #include <vector>
 
-int main() {
+int main() 
+{
     std::vector<int> v;
 
     v.push_back(10);
@@ -216,7 +230,8 @@ int main() {
     v.push_back(30);
 
     std::cout << "Vector elements: ";
-    for (size_t i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) 
+    {
         std::cout << v[i] << " ";
     }
 
@@ -392,9 +407,10 @@ The main advantage of linked lists over arrays is that they can grow and shrink 
 In a **singly linked list**, each node points to the next node, and the last node points to ```nullptr``` (signifying the end of the list). Here's how a node is typically represented:
 
 ```cpp
-struct Node {
-    int data;        // Data part of the node
-    Node* next;      // Pointer to the next node
+struct Node 
+{
+    int data;        // Data part of the node. We access this variable using an arrow pointer (exampleNode->data).
+    Node* next;      // Pointer to the next node. We access this variable using an arrow pointer (exampleNode->next).
 };
 ```
 
@@ -405,7 +421,8 @@ We'll create a class ```LinkedList``` that manages the list, starting with an em
 #include <iostream>
 
 // Node structure
-struct Node {
+struct Node 
+{
     int data;
     Node* next;
 };
@@ -421,26 +438,31 @@ public:
 
     // Destructor to clean up memory
     ~LinkedList() {
-        Node* current = head;
-        while (current != nullptr) {
-            Node* nextNode = current->next;
-            delete current;
-            current = nextNode;
+        Node* current = head; // Sets the current pointer to the head of the linked list.
+        while (current != nullptr)  // While the current pointer doesn't point to a nullptr. Terminates once all nodes are nullptr.
+        {
+            Node* nextNode = current->next; // Creates a new node and traverses to the next node.
+            delete current; // Deletes the current pointer, which essentially deletes the node that it was previously in.
+            current = nextNode; // Sets current to the next node.
         }
     }
 
     // Method to insert a node at the end
-    void insert(int value) {
+    void insert(int value) 
+    {
         Node* newNode = new Node();  // Create a new node
-        newNode->data = value;
+        newNode->data = value; // Value is assigned to the new node's data variable.
         newNode->next = nullptr; // The next pointer is initialized to nullptr, indicating that this node does not point to another node yet.
 
-        if (head == nullptr) {
-            // If list is empty, new node becomes the head
-            head = newNode;
-        } else { // Starting from head, it moves from node to node using the next pointer until it reaches the last node (where temp->next == nullptr).
-            Node* temp = head;
-            while (temp->next != nullptr) {
+        if (head == nullptr) // If list is empty, new node becomes the head
+        {
+            head = newNode; // Adds the value to the empty list.
+        }
+        else // Starting from head, it moves from node to node using the next pointer until it reaches the last node (where temp->next == nullptr).
+        {
+            Node* temp = head; // A temp node pointer is created, which is given the value of head. Terminates when the node is nullptr.
+            while (temp->next != nullptr)
+            {
                 temp = temp->next;  // Traverse to the last node. Move temp to the next node
             }
             temp->next = newNode;  // Insert at the end
@@ -449,43 +471,52 @@ public:
     }
 
     // Method to display the linked list
-    void display() {
-        Node* temp = head;
-        while (temp != nullptr) {
-            std::cout << temp->data << " -> ";
-            temp = temp->next;
+    void display()
+    {
+        Node* temp = head; // A temp node pointer is created, which is given the value of head. Terminates when the node is nullptr.
+        while (temp != nullptr) // While temp is pointing at a node with a value attached to it
+        {
+            std::cout << temp->data << " -> "; // Prints out the node's data value
+            temp = temp->next; // Traverses to the next node.
         }
-        std::cout << "nullptr" << std::endl;
+        std::cout << "nullptr" << std::endl; // Prints out nullptr
     }
 
     // Method to delete a node by value
-    void deleteNode(int value) {
-        if (head == nullptr) {
+    void deleteNode(int value)
+    {
+        if (head == nullptr) // If the list is empty, nothing occurs.
+        {
             std::cout << "List is empty, cannot delete" << std::endl;
             return;
         }
 
         // If the head node holds the value to be deleted
-        if (head->data == value) {
-            Node* temp = head;
-            head = head->next;  // Move head to the next node
-            delete temp;        // Free memory of old head
+        if (head->data == value)
+        {
+            Node* temp = head; // Creates a temporary pointer pointing at the list's head
+            head = head->next;  // Move head pointer to the next node, traversing it forward.
+            delete temp;        // Frees memory of old head. Deletes the node.
             return;
         }
 
         // Search for the node to delete
-        Node* current = head;
-        Node* previous = nullptr;
-        while (current != nullptr && current->data != value) {
-            previous = current;
-            current = current->next;
+        Node* current = head; // Sets a node to point to the first value in the list, the head. This node is temporary.
+        Node* previous = nullptr; // Sets a node to point to the previous value in the list. Because we're starting at the beginning of the list, this initially points to nullptr.
+        while (current != nullptr && current->data != value) // While the current pointer isn't null and current's data value doesn't equal the value that we are trying to delete.
+        {
+            previous = current; // Traverses the previous pointer forward.
+            current = current->next; // Traverses the current pointer forward.
         }
 
         // If the value is found, delete the node
-        if (current != nullptr) {
+        if (current != nullptr) // If the current pointer isn't null (the value has been found), change the previous pointer's address (currently set to previous->next, which is the current node) to the node that follows the current node (current->next).
+        {
             previous->next = current->next;
-            delete current;
-        } else {
+            delete current; // Deletes the node because it has been found.
+        }
+        else // Case for when the value is not found within the list.
+        {
             std::cout << "Value not found in the list" << std::endl;
         }
     }
