@@ -7,10 +7,10 @@
 4. Arrow Operators
 5. Linked List
 6. STL List
-7. Selection Sort 
-8. Big O
-9. File Streams
-10. Iterators
+7. Iterators
+8. Selection Sort 
+9. Big O
+10. File Streams
 
 ## 1. Operator Overload
 Operator Overloading allows you to redefine how operators work with user-defined data types. It allows the user to create specific scenarios for each operator in a class. Operators such as ```+```, ```-```, ```==```, ```<<```, ```>>```, ```*```, and ```/``` can be overloaded.
@@ -475,3 +475,320 @@ Linked lists are a fundamental data structure in computer science, used when dyn
 
 
 ## 6. STL List
+In C++, much like ```std::vector```, there is also ```std::list```. STL List is a doubly linked list, which means that in addition to it's head, the linked list has pointers for both ```next``` and ```prev```.
+
+STL list allows fast insertion and deletion at any position (constant time for these operations), but unlike STL Vector, it does NOT support random access memory, as each element must be accessed sequentially.
+
+### Key Features
+* Dynamic Size (automaticaly resizes if needed).
+* Traversal both forwards and backwards via iterators.
+* Efficient insertion/deletion from both ends and at the center (in comparison to vectors).
+
+## 7. Iterators
+In STL List, doubly linked lists allow for bi-directional traversal, which occur via the usage of iterators. Iterators are similar to pointers, and in addition to the aforementioned traversal, iterators can also be used to insert or delete elements in a doubly linked list.
+
+### STL List + Iterator Example:
+
+```cpp
+std::list<int> newList = {1, 2, 3, 4};
+std::list<int>::iterator it = newList.begin(); // Points the iterator to the first element of the STL List
+++it; // Moves the iterator forward to the next element
+newList.insert(it, 10); // Inserts the value 10 before the iterator's current position.
+```
+
+Iterators become invalid after modifying the list struture at their position.
+
+
+## 8. Selection Sort
+In C++, Selection Sort is a simple comparison-based sorting algorithm. It works by repeatedly finding the minimum or maximum element from the unsorted part of the list and swapping it with the first unsorted element. This process is repeated for the remaining unsorted portion of the list, gradually sorting the entire list. Despite it's simplicity, it has an $O(n^2)$ time complexity, making it inefficient for large datasets.
+
+### Steps for Selection Sort:
+* Start with the first element: Assume that the first element of the unsorted portion is the largest.
+* Compare with the rest of the elements: Compare this element with every other element in the unsorted portion. If any element is larger, update the largest element's position.
+* Swap: After finding the largest element in the unsorted portion, swap it with the last element of the unsorted portion.
+* Move to the next element: Repeat the process for the next element (excluding the already sorted part at the end).
+* Repeat until the entire array is sorted.
+
+### C++ Implementation of Selection Sort (Finding Maximum Element)
+```cpp
+#include <iostream>
+using namespace std;
+
+void selectionSort(int arr[], int n)
+{
+    for (int i = n-1; i >= 0; i--)
+    {
+        // Find the maximum element in the unsorted portion
+        int maxIndex = i;
+        for (int j =0; j <= i; j++)
+        {
+            if (arr[j] > arr[maxIndex])
+            { 
+                maxIndex = j;  // Update maxIndex if a smaller element is found           
+            }
+        }
+        // Swap the found maximum element with the first element of the unsorted portion
+        swap(arr[maxIndex], arr[i]);
+    }
+}
+
+void printArray(int arr[], int n) 
+{
+    for (int i = 0; i < n; i++) 
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+
+int main() 
+{
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    cout << "Original array: ";
+    printArray(arr, n);
+
+    selectionSort(arr, n);
+
+    cout << "Sorted array: ";
+    printArray(arr, n);
+
+    return 0;
+}
+```
+
+### Explanation:
+1. Outer Loop ```for (int i = n - 1; i >= 0; i--)```:
+   * Each iteration places the maximum element in the unsorted portion at the correct position at the end of the array.
+
+2. Inner Loop ```for (int j = 0; j <= i; j++)```:
+   * This loop looks for the maximum element in the unsorted portion (from 0 to i).
+   * It updates maxIndex whenever it finds an element larger than the current maximum.
+
+3. Swapping:
+* The largest element found in the unsorted portion is swapped with the last element of that portion ```arr[i]```.
+
+
+#### Example Output:
+```c
+Original array: 64 25 12 22 11 
+Sorted array: 11 12 22 25 64
+```
+
+### Time Complexity:
+* Worst Case Time Complexity: O(n²) where n is the number of elements in the array.
+* Space Complexity: O(1), as no extra memory is used except for temporary variables.
+
+
+## 9. Big O
+Big O Notation is a mathematical notation used in computer science to describe the ```Time Complexity (how fast/the number of steps the algorithm takes to complete it's function)``` and/or ```Space Complexity (how much memory/the number of additional memory calls the algorithm needs to complete)``` an algorithm uses as the input size grows.
+
+The Big O Notation mainly focusses on the worst-case scenario of an algorithm, helping to estimate how the performance of it scales with larger inputs.
+
+### Big O Notation - Simplified
+```Big O Notation``` describes the upper bound of the time or space complexity of an algorithm, showing how its performance scales as the input size increases. To simplify Big O expressions, we must follow these key principles:
+
+1. **Ignore Constants**
+   - Constants don't really matter in Big O because we're only concerned with how the algorithm grows as the input size grows. Constants have little to no impact on time or space complexity.
+   - Examples:
+     - $O(2n)$ simplifies to just $O(n)$.
+     - $O(100n + 5)$, just like the previous example, simplifies to just $O(n)$.
+
+2. **Drop any non-dominant terms**
+   - When an algorithm has multiple terms in it's Big O Notation, keep only the term that grows the fastest as $n$ increases.
+   - Examples:
+     - $O(n^2 + n)$ simplifies to just $O(n^2)$ because $n^2$ grows faster than $n$ as $n$ increases.
+     - $O(n^3 + n^2 + n)$ simplifies to $O(n^3)$ because $n^3$ grows faster than $n^2$ and $n$ as $n$ increases.
+
+3. **Focus on the worst-case scenario**
+   - Big O Notation primarily focusses on the worst-case scenario of an algorithm, i.e., the most time or space it will use as the input grows in size.
+
+### Common Big O Complexities (in increasing order of growth):
+
+- $O(1)$ – Constant time
+- $O(\log n)$ – Logarithmic time
+- $O(n)$ – Linear time
+- $O(n \log n)$ – Linearithmic time
+- $O(n^2)$ – Quadratic time
+- $O(2^n)$ – Exponential time
+- $O(n!)$ – Factorial time
+
+As the input size $n$ grows, the dominant term becomes the most significant. That's why lower-order terms and constants are ignored.
+
+### Determining an Algorithm's Time/Space Complexity
+To determine an algorithm's time complexity, you analyze how the number of operations grows as the input size increases. This involves counting the dominant operations (like comparisons or assignments) in the algorithm and expressing this growth as a function of the input size, typically using Big O notation. For space complexity, you assess how much memory the algorithm uses relative to the input size, considering both auxiliary space (temporary memory used) and space for input/output. Both complexities are typically determined by examining the algorithm’s loops, recursive calls, and data structures.
+
+### Summary:
+Big O notation abstracts away constants and lower-order terms to focus on growth trends.
+It helps compare algorithms and predict how they will scale as inputs increase.
+
+
+## 10. File Streams
+In C++, inputting and outputting files is handled using file streams from the ```<fstream>``` library. This library provides three key classes for file operations:
+
+* ifstream: For reading from files (input file stream).
+* ofstream: For writing to files (output file stream).
+* fstream: For both reading and writing (input-output file stream).
+
+### Opening and Closing Files using Fstream
+To perform file operations in C++, first you must open the file. Streams can be opened either in the constructor or using the ```.open()``` method.
+
+* Opening a File: When you open a file for reading/writing, the file stream is associated with a file on your disk.
+* Closing a File: You should close the file after all operations to free up system resources.
+
+#### Reading from Files (ifstream)
+To read from a file in C++, you use the ```ifstream``` class.
+
+```cpp
+#include <iostream>
+#include <string>
+#include <fstream>
+
+int main()
+{
+    std::ifstream inputFile("file1.txt"); // Opens the file for reading
+    if (!inputFile.is_open()) // Checks if the file has properly opened. If it didn't, C++ will output an error message.
+    {
+        std::cerr<<"Error opening the file."<<std::endl;
+        return 1;
+    }
+
+    std::string line; // Creates a string variable for each line in the file
+    while (std::getLine(inputFile, line)) // Reads the file line by line
+    {
+        std::cout<<line<<std::endl // Outputs each line to the console.
+    }
+
+    inputFile.close(); // Closes the file to free up system resources
+    return 0;
+}
+```
+
+##### Explanation:
+* std::ifstream inputFile("example.txt");: Opens the file example.txt for reading.
+* std::getline(inputFile, line);: Reads one line from the file at a time into the line variable.
+* inputFile.close();: Closes the file after reading.
+
+#### Writing to Files (ofstream)
+To write to a file in C++, you use the ```ofstream``` class.
+
+If the file doesn't exist, then a new one will be created. If it does exit, by default, this file will be overwritten unless specified otherwise.
+
+```cpp
+#include <iostream>
+#include <fstream>
+
+int main()
+{
+    std::ofstream outputFile("file2.txt"); // Opens the file for writing
+    if (!outputFile.is_open()) // Checks if the file has properly opened. If it didn't, C++ will output an error message.
+    {
+        std::cerr<<"Error opening the file."<<std::endl;
+        return 1;
+    }
+
+    outputFile<<"This is a line of text.\n"; // Writing a line of text to the file
+    outputFile<<"This is another line of text.\n"; // Writing a second line of text to the file
+
+    outputFile.close(); // Closes the file to free up system resources
+    return 0;
+}
+```
+
+##### Explanation:
+* std::ofstream outputFile("output.txt");: Opens output.txt for writing. If the file doesn't exist, it is created.
+* outputFile << "text";: Writes text to the file.
+* outputFile.close();: Closes the file after writing.
+
+#### Reading and Writing Files (fstream)
+To both read from and write to a file in C++, you use the ```fstream``` class.
+
+You need to specify the mode explicitly using flags such as ```std::ios::in``` for reading, ```std::ios::out``` for writing, and ```std::ios::app``` for appending.
+
+```cpp
+#include <iostream>
+#include <string>
+#include <fstream>
+
+int main()
+{
+    std::fstream file("file3.txt" | std::ios::in | std::ios::out | std::ios::app) // Opens the file for reading, writing, and appending.
+    if (!file.is_open()) // Checks if the file has properly opened. If it didn't, C++ will output an error message.
+    {
+        std::cerr<<"Error opening the file."<<std::endl;
+        return 1;
+    }
+
+    file<<"Adding in a line.\n"; // Writing to the file
+    file.seekg(0, std::ios::beg); // Moves the file pointer to the beginning for reading.
+
+    std::string line; // Creates a string variable for each line in the file
+    while (std::getLine(file, line)) // Reads the file line by line
+    {
+        std::cout<<line<<std::endl // Outputs each line to the console.
+    }
+
+    file.close(); //Closes the file to free up system resources
+    return 0;
+}
+```
+
+##### Explanation:
+* std::fstream file("data.txt", std::ios::in | std::ios::out);: Opens data.txt for both reading and writing.
+* file << "text";: Writes to the file.
+* file.seekg(0, std::ios::beg);: Moves the file pointer back to the start to read from the file.
+* std::getline(file, line);: Reads lines from the file.
+
+### File Open Modes
+When opening files, you can use different modes to control how the file is accessed:
+* std::ios::in: Open for reading.
+* std::ios::out: Open for writing (default behavior is to overwrite the file).
+* std::ios::app: Append to the file without erasing its content.
+* std::ios::binary: Open the file in binary mode (useful for non-text data).
+
+### Checking for File Errors
+You can check if a file was successfully opened using the .is_open() method. Additionally, file streams support several flags to detect errors:
+
+* fail(): Checks if a failure occurred (e.g., trying to read past the end of the file).
+* eof(): Checks if the end of file has been reached.
+* bad(): Checks for non-recoverable errors like hardware failure.
+* good(): Returns true if no errors occurred.
+
+### Example: Copying File Contents
+Here's a full example of how to read from one file and write its content into another:
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main()
+{
+    std::ifstream inputFile("input.txt");  // Opens the file for reading
+    std::ofstream outputFile("output.txt"); // Opens the file for writing 
+
+    if (!inputFile || !outputFile) // Checks if the files have properly opened. If it didn't, C++ will output an error message.
+    {
+        std::cerr<<"Error opening the files."<<std::endl;
+        return 1;
+    }
+
+    std::string line;
+    while (std::getline(inputFile, line))  // Reads the file line by line
+    {
+        outputFile<<line<<std::endl; // Write each line to output
+    }
+
+    inputFile.close(); //Closes the file to free up system resources
+    outputFile.close(); //Closes the file to free up system resources
+    return 0;
+}
+```
+
+### Conclusion
+Use ifstream for reading, ofstream for writing, and fstream for both reading and writing.
+Always check if the file was opened successfully.
+Remember to close the file after operations to release resources.
+Use appropriate file open modes depending on whether you want to overwrite, append, or open in binary mode.
