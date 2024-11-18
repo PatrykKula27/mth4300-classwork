@@ -76,17 +76,3 @@ to access the class and it's functions.
 Error #6: In main.cpp - 
 There is no overload of the insertion operator in (std::cout<<rect<<std::endl;)
 */
-
-/*
-Topics to Study:
-- Operator Overload
-- STL Vector
-- Linked Lists
-- Destructors
-- Arrow Operators
-- Selection Sort
-- Big O
-- File Stream
-- STL List
-- Iterators
-*/

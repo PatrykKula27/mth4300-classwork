@@ -1,4 +1,6 @@
 #include <iostream>
+#include "rectangle.h"
+#include "rectangle.cpp"
 
 int main()
 {
@@ -8,4 +10,3 @@ int main()
     std::cout <<rect<< std::endl;
     return 0;
 }
-5
