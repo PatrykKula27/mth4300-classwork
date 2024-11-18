@@ -247,8 +247,8 @@ The syntax for a destructor goes as follows:
 class ClassName
 {
     private:
-        int val1;
-        int val2;
+        int* val1;
+        int* val2;
     
     public:
         ClassName(int a, int b)
