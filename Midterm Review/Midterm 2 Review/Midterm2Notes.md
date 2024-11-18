@@ -45,6 +45,76 @@ friend std::istream& operator>>(std::istream& newInput, ClassName classInput)
 
 When it comes to overloading output ```(<<)``` and input ```(>>)```, you MUST use the keyword ```friend``` in order for the operator overload to properly function. You must also pass by reference a brand new variable using either ofstream or ifstream, as well as a ClassName variable which takes the user's input. This allows output and input operator overload to occur.
 
+### Syntax for Every Operator Overload Case
+```cpp
+#include <iostream>
+#include <cmath>
+
+class points3D
+{
+    private:
+        double var1;
+        double var2;
+        double var3;
+
+    public:
+        points3D(double v1 = 0.0, double v2 = 0.0, double v3 = 0.0)
+        {
+            var1 = v1;
+            var2 = v2;
+            var3 = v3;
+        }
+
+        points3D operator+(points3D& other)
+        {
+            return points3D(var1 + other.var1, var2 + other.var2, var3 + other.var3);
+        }
+
+        points3D operator-(points3D& other)
+        {
+            return points3D(var1 - other.var1, var2 - other.var2, var3 - other.var3);
+        }
+
+        points3D operator*(double other)
+        {
+            return points3D(var1*other, var2*other, var3*other);
+        }
+
+        points3D operator/(double other)
+        {
+            return points3D(var1/other, var2/other, var3/other);
+        }
+
+        bool operator==(points3D& other)
+        {
+            return (var1 == other.var1) && (var2 == other.var2) && (var3 == other.var3);
+        }
+
+        friend std::ostream& operator<<(std::ostream& noutput, const points3D& newOutput)
+        {
+            noutput<<"("<<newOutput.var1<<", "<<newOutput.var2<<", "<<newOutput.var3<<")"<<std::endl;
+            return noutput;
+        }
+
+        friend std::istream& operator>>(std::istream& ninput, points3D& newInput)
+        {
+            std::cout<<"Enter a Point (x, y, z): "<<std::endl;
+            ninput>>newInput.var1>>newInput.var2>>newInput.var3;
+            return ninput;
+        }
+
+        double displayMagnitude()
+        {
+            return sqrt(pow(var1,2) + pow(var2, 2) + pow(var3, 2));
+        }
+};
+```
+
+### Explanation:
+* For overloading operators such as ```+```, ```-```, ```*```, ```/```, and ```==```, the syntax is generally the same.
+* For overloading operators such as ```<<``` and ```>>```, you must use ```friend``` and ```istream/ostream``` in order for the operator overload to properly function. The syntax vastly differs from the other methods.
+* For overloading operators in general, you must pass an object by reference.
+
 ### Summary
 * Operator overloading allows you to redefine how operators work with user-defined types.
 * It makes code more intuitive by allowing the use of standard operators with custom objects.
