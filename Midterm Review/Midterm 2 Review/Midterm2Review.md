@@ -36,7 +36,7 @@
 ## Short Answers
 
 ### 1. How do you declare a member function that guarantees it will not modify the object it belongs to?
-You would use the keyword const(). For example: void method() const()
+You would use the keyword const(). For example: void method() const.
 
 ### 2. What happens to the elements of a vector when it resizes after exceeding its current capacity?
 The elements are copied to a new array that is double it's size.
