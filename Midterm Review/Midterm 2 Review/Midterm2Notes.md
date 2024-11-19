@@ -635,13 +635,13 @@ using namespace std;
 
 void selectionSort(int arr[], int n)
 {
-    for (int i = n-1; i >= 0; i--)
+    for (int i = n-1; i >= 0; i--) // Starts the for loop with the last element in the array.
     {
         // Find the maximum element in the unsorted portion
-        int maxIndex = i;
-        for (int j =0; j <= i; j++)
+        int maxIndex = i; // Sets the maximum to the current index. When this function initially runs, maxIndex is set to the last element in the array.
+        for (int j =0; j <= i; j++) // Starts a for loop from the beginngin of the array. 
         {
-            if (arr[j] > arr[maxIndex])
+            if (arr[j] > arr[maxIndex]) // Compares the current J-index to the current I-index. When this function initially runs, it is comparing the first element in the array to the last element in the array.
             { 
                 maxIndex = j;  // Update maxIndex if a smaller element is found           
             }
@@ -687,7 +687,7 @@ int main()
    * It updates maxIndex whenever it finds an element larger than the current maximum.
 
 3. Swapping:
-* The largest element found in the unsorted portion is swapped with the last element of that portion ```arr[i]```.
+   * The largest element found in the unsorted portion is swapped with the last element of that portion ```arr[i]```.
 
 
 #### Example Output:
@@ -775,7 +775,7 @@ int main()
     }
 
     std::string line; // Creates a string variable for each line in the file
-    while (std::getLine(inputFile, line)) // Reads the file line by line
+    while (std::getline(inputFile, line)) // Reads the file line by line
     {
         std::cout<<line<<std::endl // Outputs each line to the console.
     }
@@ -833,7 +833,7 @@ You need to specify the mode explicitly using flags such as ```std::ios::in``` f
 
 int main()
 {
-    std::fstream file("file3.txt" | std::ios::in | std::ios::out | std::ios::app) // Opens the file for reading, writing, and appending.
+    std::fstream file("file3.txt" , std::ios::in | std::ios::out | std::ios::app) // Opens the file for reading, writing, and appending.
     if (!file.is_open()) // Checks if the file has properly opened. If it didn't, C++ will output an error message.
     {
         std::cerr<<"Error opening the file."<<std::endl;
@@ -844,7 +844,7 @@ int main()
     file.seekg(0, std::ios::beg); // Moves the file pointer to the beginning for reading.
 
     std::string line; // Creates a string variable for each line in the file
-    while (std::getLine(file, line)) // Reads the file line by line
+    while (std::getline(file, line)) // Reads the file line by line
     {
         std::cout<<line<<std::endl // Outputs each line to the console.
     }
