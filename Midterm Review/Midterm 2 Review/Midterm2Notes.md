@@ -12,7 +12,7 @@
 9. File Streams
 
 ## 1. Operator Overload
-Operator Overloading allows you to redefine how operators work with user-defined data types. It allows the user to create specific scenarios for each operator in a class. Operators such as ```+```, ```-```, ```==```, ```<<```, ```>>```, ```*```, and ```/``` can be overloaded.
+Operator Overloading allows you to redefine how operators work with user-defined data types. It allows the user to create specific scenarios for each operator in a class. Operators such as ```+```, ```-```, ```==```, ```<<```, ```>>```, ```*```, ```/```, and ```->``` can be overloaded.
 
 General Syntax: 
 
@@ -43,6 +43,19 @@ friend std::istream& operator>>(std::istream& newInput, ClassName classInput)
 ```
 
 When it comes to overloading output ```(<<)``` and input ```(>>)```, you MUST use the keyword ```friend``` in order for the operator overload to properly function. You must also pass by reference a brand new variable using either ofstream or ifstream, as well as a ClassName variable which takes the user's input. This allows output and input operator overload to occur.
+
+You can also overload an arrow operator. Arrow pointers allows direct access to members of an object, and you are able to overload the arrow pointer to function differently when accessing these members within an object. Overloading an arrow operator is slightly different, however it is rather simple. Here is the syntax:
+
+```cpp
+ClassName* operator->()
+{
+    return &val;
+}
+```
+
+### Explanation
+* You must pass the class name as a pointer in order for the overload to function properly.
+* The return variable must proceed after the ```&``` character.
 
 ### Syntax for Every Operator Overload Case
 ```cpp
@@ -82,6 +95,11 @@ class points3D
         points3D operator/(double other)
         {
             return points3D(var1/other, var2/other, var3/other);
+        }
+
+        points3D* operator->()
+        {
+            return &var1;
         }
 
         bool operator==(points3D& other)
