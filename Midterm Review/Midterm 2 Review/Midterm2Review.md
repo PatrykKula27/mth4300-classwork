@@ -20,8 +20,8 @@
 ### 6. In a singly linked list, each node has a pointer to the previous node as well as the next node.
 ```False``` - A singly linked list only has a pointer to the head node and to the next node. A doubly linked list has pointers to both the next and preious nodes, as well as a head node.
 
-### 7. The time complexity of the selection sort algorithm is O(n log n) in the worst case.
-```False``` - The worst case is O(n^2), with n being the number of elements in an array.
+### 7. The time complexity of the selection sort algorithm is $O(n*log(n))$ in the worst case.
+```False``` - The worst case is $O(n^2)$, with n being the number of elements in an array.
 
 ### 8. The fstream class in C++ allows for both input and output operations on files.
 ```True``` - The functions ifstream and ofstream are used for write and read respectively.
@@ -36,7 +36,7 @@
 ## Short Answers
 
 ### 1. How do you declare a member function that guarantees it will not modify the object it belongs to?
-You would use the keyword const(). For example: void mehtod() const()
+You would use the keyword const(). For example: void method() const()
 
 ### 2. What happens to the elements of a vector when it resizes after exceeding its current capacity?
 The elements are copied to a new array that is double it's size.
@@ -166,8 +166,6 @@ void getHeight()
 ```main.cpp```
 ```cpp
 #include <iostream>
-#include "rectangle.h"
-#include "rectangle.cpp"
 
 int main()
 {
