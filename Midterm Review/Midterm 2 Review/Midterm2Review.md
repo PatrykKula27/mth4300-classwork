@@ -107,7 +107,7 @@ bool LinkedList::push_back(int val)
 ```
 
 ### Question 2: Find the 5+ errors in the code:
-```rectange.h```
+```rectangle.h```
 ```cpp
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
