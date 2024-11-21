@@ -51,3 +51,80 @@ struct Node
 };
 ```
 
+### Binary Tree Operations
+In order for Binary Trees to properly function, methods are created for certain operations such as insertion and traversal.
+
+#### Insertion
+The ```insertion``` operation places a new node at the correct position in the tree. Here's an example of inserting a node into a ```binary search tree```, where the left child contains a smaller value and the right child contains a larger value.
+
+```cpp
+// Function to insert a new node in the binary search tree (BST)
+Node* insert(Node* root, int value) 
+{
+    if (root == nullptr) 
+    {
+        return new Node(value);  // If the tree is empty, create a new node
+    }
+    
+    if (value < root->data) 
+    {
+        root->left = insert(root->left, value);  // Insert in the left subtree
+    } else 
+    {
+        root->right = insert(root->right, value); // Insert in the right subtree
+    }
+    
+    return root;
+}
+```
+
+#### Traversal
+```Traversal``` is the process of visiting all nodes in the tree. There are three primary methods:
+
+##### 1. In-Order Traversal (Left, Root, Right)
+For BSTs, this traversal returns elements in sorted order.
+
+```cpp
+// In-order traversal of the binary tree
+void inOrder(Node* root) 
+{
+    if (root != nullptr) 
+    {
+        inOrder(root->left);        // Visit left subtree
+        cout << root->data << " ";  // Visit root
+        inOrder(root->right);       // Visit right subtree
+    }
+}
+```
+
+##### 2. Pre-order Traversal (Root, Left, Right):
+Used for copying a tree or for prefix expression evaluation.
+
+```cpp
+// Pre-order traversal of the binary tree
+void preOrder(Node* root) 
+{
+    if (root != nullptr) 
+    {
+        cout << root->data << " ";  // Visit root
+        preOrder(root->left);       // Visit left subtree
+        preOrder(root->right);      // Visit right subtree
+    }
+}
+```
+
+##### 3. Post-order Traversal (Left, Right, Root):
+Useful for deleting a tree or postfix expression evaluation.
+
+```cpp
+// Post-order traversal of the binary tree
+void postOrder(Node* root) 
+{
+    if (root != nullptr) 
+    {
+        postOrder(root->left);      // Visit left subtree
+        postOrder(root->right);     // Visit right subtree
+        cout << root->data << " ";  // Visit root
+    }
+}
+```
