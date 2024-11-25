@@ -6,13 +6,14 @@
 3. [Coding](#coding)
 
 ## True or False:
-### 1. The command to compile and renamea file is: g++ main.cpp -o main
-```True``` - 
+### 1. The command to compile and rename a file is: g++ main.cpp -o main
+```True``` - This is the command to compile a file in the terminal.
 
-### 2. Dockers MAIN purpose is to make programs faster.
-```False```
+### 2. Docker's MAIN purpose is to make programs faster.
+```False``` - Docker's main purpose is not to make programs faster but to provide a lightweight, portable, and consistent environment for building, shipping, and running applications. By using containers, Docker ensures that applications behave the same way regardless of the environment (e.g., development, testing, or production).
+
 ### 3. The float data type takes up more memory in a program than the double.
-```False```
+```False``` - Double stores more numbers than float.
 
 ### 4. While loops are used when you need a program to loop, and the number of times it will loop is detetmined at run time.
 ```True```
