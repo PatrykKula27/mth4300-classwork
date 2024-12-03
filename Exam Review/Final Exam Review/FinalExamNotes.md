@@ -7,9 +7,10 @@ The Final Exam will be cumulative, however, 70% of it will be the last 5-6 topic
 2. Midterm 2 Review: [Notes](./Midterm%202%20Review%20FIles/Midterm2Notes%20FINAL.md) | [Review](./Midterm%202%20Review%20FIles/Midterm2Review%20FINAL.md)
 
 ## Topics:
-1. Binary Trees + Binary Search Tree
+1. [Binary Trees](#1-binary-trees)
+2. [Binary Search Trees](#2-binary-search-trees)
 
-## 1. Binary Trees & Binary Search Trees
+## 1. Binary Trees
 A ```binary tree``` in C++ is a hierarchical data structure in which each node has at mode two children, often referred to as the left and right child respectively. 
 
 ### Basic Concepts of a Binary Tree:
@@ -128,3 +129,12 @@ void postOrder(Node* root)
     }
 }
 ```
+
+## 2. Binary Search Trees
+A Binary Search Tree (BST) is a data structure that organizes elements (or nodes) in a hierarchical manner, making it efficient for operations like searching, insertion, and deletion. Here's a breakdown of how BSTs work in C++ and their basic concepts.
+
+### Properties of a Binary Search Tree
+* Each node has a key (or value).
+* The left child of a node contains keys that are less than the node's key.
+* The right child of a node contains keys that are greater than the node's key.
+* No duplicate keys (optional, but common in BSTs).
