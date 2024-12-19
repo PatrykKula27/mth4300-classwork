@@ -289,22 +289,23 @@ Node* BinarySearchTree::deleteNode(Node* start, int val)
             Node* inOrderSuccessor = findMin(start->right); // We create a temporary node for the child leaf with the bigger value.
 
             start->data = inOrderSuccessor->data; // We replace the parent node with the child leaf with the bigger value.
-            start->right = deleteNode(start->right, start->data); // We recursively delete the right leaf node.
+            start->right = deleteNode(start->right, inOrderSuccessor->data); // We recursively call the function. Because we now have one child, when the function is recursively called we skip this part entirely and go straight to the one-child case (which is the code that follows this section.)
         }
         else // For cases with one child.
         {
-            Node* temp;
-            if (start->left != nullptr) 
+            Node* temp; // Create a temporary node.
+
+            if (start->left != nullptr) // If the left child exists, assign the left node to temp.
             {
                 temp = start->left;
             } 
-            else 
+            else // If there is instead a right child or no child, we assign the right to temp.
             {
                 temp = start->right;
             }
 
-            delete start;
-            delete temp;
+            delete start; // We delete the node
+            delete temp; // We delete temp
         }
     }
 }
@@ -354,7 +355,7 @@ A real-world example of this would be stacking a collection of textbooks, rangin
 * **Push:** Adds an element to the top of the stack.
 * **Pop:** Just like other data structures, pop removes an element from the top of the stack.
 * **Peek (or Top):** Returns the top element of a stack without removing it.
-**isEmpty:** Self-explanatory - It checks if the stack is empty or not.
+* **isEmpty:** Self-explanatory - It checks if the stack is empty or not.
 
 ### Stack Implementation in C++
 There are two main ways to implement a Stack in C++. Stacks can be implemented using:
